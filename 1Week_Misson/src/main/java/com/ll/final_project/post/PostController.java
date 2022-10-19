@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -27,8 +26,8 @@ public class PostController {
 
     @PostMapping ("/write")
     @ResponseBody
-    public String writePost(@RequestParam String subject, @RequestParam String content) {
-        postService.writePost(subject, content);
+    public String writePost(PostDto.RequestPostDto requestPostDto) {
+        postService.writePost(requestPostDto);
         return "글이 저장되었습니다.";
     }
 }
