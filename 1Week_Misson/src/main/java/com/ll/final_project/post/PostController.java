@@ -1,7 +1,9 @@
 package com.ll.final_project.post;
 
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +16,10 @@ public class PostController {
     private final PostService postService;
 
     @GetMapping ("/list")
-    @ResponseBody
-    public String showPostList() {
-        return "<h1>글 리스트</h1>";
+    public String showPostList(Model model) {
+        List<Post> postList = postService.getList();
+        model.addAttribute("postList", postList);
+        return "post_list";
     }
 
     @GetMapping ("/write")
