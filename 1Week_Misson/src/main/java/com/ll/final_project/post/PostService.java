@@ -1,6 +1,7 @@
 package com.ll.final_project.post;
 
 import com.ll.final_project.post.PostDto.RequestPostDto;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +13,9 @@ public class PostService {
     public void writePost(RequestPostDto requestPostDto) {
         Post post = new Post(requestPostDto.getSubject(), requestPostDto.getContent());
         postRepository.save(post);
+    }
+
+    public List<Post> getList() {
+        return postRepository.findAll();
     }
 }
