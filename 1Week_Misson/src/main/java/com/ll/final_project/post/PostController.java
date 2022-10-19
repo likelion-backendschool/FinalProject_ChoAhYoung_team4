@@ -57,4 +57,20 @@ public class PostController {
 
         return "redirect:/post/list";
     }
+    // 글 삭제 종료
+
+    // 글 수정 시작
+    @GetMapping("/{id}/modify")
+    public String showModifyPost(@PathVariable Integer id, Model model) {
+        Post post = postService.getPost(id);
+        model.addAttribute("post", post);
+        return "post_modify_form";
+    }
+    @PostMapping("{id}/modify")
+    public String modifyPost(@PathVariable Integer id, PostDto.RequestPostDto requestPostDto, Model model) {
+        Post post = postService.modifyPost(id, requestPostDto);
+        model.addAttribute("post", post);
+        return "post_detail";
+    }
+    // 글 수정 종료
 }
