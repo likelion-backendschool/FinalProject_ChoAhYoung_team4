@@ -18,4 +18,8 @@ public class PostService {
     public List<Post> getList() {
         return postRepository.findAll();
     }
+
+    public Post getPost(Integer id) {
+        return postRepository.findById(id).orElse(null);
+    }
 }
