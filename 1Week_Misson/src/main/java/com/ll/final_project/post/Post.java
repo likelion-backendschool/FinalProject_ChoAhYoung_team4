@@ -6,11 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Post extends BaseEntity {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -18,4 +20,10 @@ public class Post extends BaseEntity {
 
     private String subject;
     private String content;
+
+    public Post (String subject, String content) {
+        super();
+        this.subject = subject;
+        this.content = content;
+    }
 }
