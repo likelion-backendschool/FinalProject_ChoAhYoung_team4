@@ -1,6 +1,6 @@
 package com.ll.final_project.post;
 
-import com.ll.final_project.base.DataNotFoundException;
+import com.ll.final_project.post.PostDto.ResponsePostDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -41,10 +41,8 @@ public class PostController {
     // 글 상세 시작
     @GetMapping("/{id}")
     public String showPostDetail(@PathVariable Integer id, Model model) {
-        Post post = postService.getPost(id);
-        if (post == null) {
-            throw new DataNotFoundException("post not found");
-        }
+        ResponsePostDto post = postService.getPost(id);
+
         model.addAttribute("post", post);
         return "/post/post_detail";
     }
@@ -62,13 +60,13 @@ public class PostController {
     // 글 수정 시작
     @GetMapping("/{id}/modify")
     public String showModifyPost(@PathVariable Integer id, Model model) {
-        Post post = postService.getPost(id);
+        ResponsePostDto post = postService.getPost(id);
         model.addAttribute("post", post);
         return "/post/post_modify_form";
     }
     @PostMapping("{id}/modify")
     public String modifyPost(@PathVariable Integer id, PostDto.RequestPostDto requestPostDto, Model model) {
-        Post post = postService.modifyPost(id, requestPostDto);
+        ResponsePostDto post = postService.modifyPost(id, requestPostDto);
         model.addAttribute("post", post);
         return "/post/post_detail";
     }
