@@ -2,6 +2,7 @@ package com.ll.final_project.post;
 
 import com.ll.final_project.base.DataNotFoundException;
 import com.ll.final_project.post.PostDto.RequestPostDto;
+import com.ll.final_project.post.PostDto.ResponsePostDto;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,12 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public Post getPost(Integer id) {
-        return postRepository.findById(id).orElse(null);
+    public ResponsePostDto getPost(Integer id) {
+        Post post = postRepository.findById(id).orElse(null);
+        if (post == null) {
+            throw new DataNotFoundException("post not found");
+        }
+        return new ResponsePostDto(post);
     }
 
     public void deletePost(Integer id) {
@@ -33,7 +38,7 @@ public class PostService {
         postRepository.delete(post);
     }
 
-    public Post modifyPost(Integer id, RequestPostDto requestPostDto) {
+    public ResponsePostDto modifyPost(Integer id, RequestPostDto requestPostDto) {
         Post post = postRepository.findById(id).orElse(null);
         if (post == null) {
             throw new DataNotFoundException("post not found");
@@ -42,6 +47,7 @@ public class PostService {
         post.setSubject(requestPostDto.getSubject());
         post.setContent(requestPostDto.getContent());
         post.setUpdatedDate(LocalDateTime.now());
-       return postRepository.save(post);
+
+       return new ResponsePostDto(postRepository.save(post));
     }
 }
