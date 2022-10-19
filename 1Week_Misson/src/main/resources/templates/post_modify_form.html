@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css">
+
+<div class="container my-3">
+  <form method="POST" th:action="@{|/post/${post.id}/modify|}"  class="my-3">
+    <div class="mb-3">
+      <label for="subject"> 제목</label>
+      <input type="text" id="subject" name="subject" class="form-control" th:value="${post.subject}">
+    </div>
+    <div class="mb-3">
+      <label for="content"> 질문 내용 </label>
+      <textarea id="content" name="content" class="form-control" rows="10">[[${post.content}]] </textarea>
+    </div>
+    <input type="submit" value="수정하기" class="btn btn-primary my-2">
+  </form>
+</div>
