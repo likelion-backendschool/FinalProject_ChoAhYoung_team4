@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>멋북📚리스트</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h2 class="border-bottom py-2" th:text="${post.subject}"></h2>
+
+  <div class="card my-3">
+    <div class="card-body">
+      <div class="card-text" style="white-space: pre-line;" th:text="${post.content}"></div>
+
+      <div class="d-flex justify-content-end">
+        <div class="badge bg-light text-dark p-2 text-start">
+          <div th:text="|작성일 : ${#temporals.format(post.createdDate, 'yyyy-MM-dd HH:mm')}|"></div>
+          <div th:text="|수정일 : ${#temporals.format(post.updatedDate, 'yyyy-MM-dd HH:mm')}|"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
