@@ -21,14 +21,14 @@ public class PostController {
     public String showPostList(Model model) {
         List<Post> postList = postService.getList();
         model.addAttribute("postList", postList);
-        return "post_list";
+        return "/post/post_list";
     }
     // 글 리스트 종료
 
     // 글 작성 시작
     @GetMapping ("/write")
     public String showWriteForm() {
-        return "post_form";
+        return "post/post_form";
     }
 
     @PostMapping ("/write")
@@ -46,7 +46,7 @@ public class PostController {
             throw new DataNotFoundException("post not found");
         }
         model.addAttribute("post", post);
-        return "post_detail";
+        return "/post/post_detail";
     }
     // 글 상세 종료
 
@@ -64,13 +64,13 @@ public class PostController {
     public String showModifyPost(@PathVariable Integer id, Model model) {
         Post post = postService.getPost(id);
         model.addAttribute("post", post);
-        return "post_modify_form";
+        return "/post/post_modify_form";
     }
     @PostMapping("{id}/modify")
     public String modifyPost(@PathVariable Integer id, PostDto.RequestPostDto requestPostDto, Model model) {
         Post post = postService.modifyPost(id, requestPostDto);
         model.addAttribute("post", post);
-        return "post_detail";
+        return "/post/post_detail";
     }
     // 글 수정 종료
 }

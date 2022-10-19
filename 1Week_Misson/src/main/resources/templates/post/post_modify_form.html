@@ -1,0 +1,18 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/common/layout}">
+
+<div layout:fragment="content" class="container my-3">
+  <form method="POST" th:action="@{|/post/${post.id}/modify|}" onsubmit="submitForm(this); return false;" class="my-3">
+    <input type="hidden" name="content">
+    <div class="mb-3">
+      <label for="subject"> 제목</label>
+      <input type="text" id="subject" name="subject" class="form-control" th:value="${post.subject}">
+    </div>
+    <div class="mb-3">
+      <div class="toast-ui-editor" toast-ui-editor--height="400px">
+        [[${post.content}]]
+      </div>
+    </div>
+    <input type="submit" value="수정하기" class="btn btn-primary my-2">
+  </form>
+</div>
