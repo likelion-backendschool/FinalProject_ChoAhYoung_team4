@@ -1,5 +1,6 @@
 package com.ll.final_project.post;
 
+import com.ll.final_project.base.DataNotFoundException;
 import com.ll.final_project.post.PostDto.RequestPostDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,5 +22,13 @@ public class PostService {
 
     public Post getPost(Integer id) {
         return postRepository.findById(id).orElse(null);
+    }
+
+    public void deletePost(Integer id) {
+        Post post = postRepository.findById(id).orElse(null);
+        if (post == null) {
+            throw new DataNotFoundException("post not found");
+        }
+        postRepository.delete(post);
     }
 }

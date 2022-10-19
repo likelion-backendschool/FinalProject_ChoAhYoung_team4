@@ -48,5 +48,13 @@ public class PostController {
         model.addAttribute("post", post);
         return "post_detail";
     }
-    // 글 상제 종료
+    // 글 상세 종료
+
+    // 글 삭제 시작
+    @GetMapping("/{id}/delete")
+    public String deletePost(@PathVariable Integer id) {
+        postService.deletePost(id);
+
+        return "redirect:/post/list";
+    }
 }
