@@ -10,8 +10,8 @@ import java.security.Principal;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,7 +23,7 @@ public class CartController {
     private final ProductService productService;
 
     @PreAuthorize("isAuthenticated()")
-    @PostMapping("/add/{productId}")
+    @GetMapping("/add/{productId}")
     public String addCart (@PathVariable Long productId, Principal principal) {
         Member member = memberService.findByUsername(principal.getName()).orElse(null);
         if (member == null) {
