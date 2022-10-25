@@ -4,6 +4,7 @@ import com.ll.exam.final__2022_10_08.app.cart.entity.CartItem;
 import com.ll.exam.final__2022_10_08.app.cart.repository.CartRepository;
 import com.ll.exam.final__2022_10_08.app.member.entity.Member;
 import com.ll.exam.final__2022_10_08.app.product.entity.Product;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,9 @@ public class CartService {
     public CartItem addCart(Member member, Product product) {
         CartItem cartItem = new CartItem(member, product);
         return cartRepository.save(cartItem);
+    }
+
+    public List<CartItem> findAllByMemberId(long id) {
+        return cartRepository.findAllByMemberId(id);
     }
 }
