@@ -6,6 +6,7 @@ import com.ll.exam.final__2022_10_08.app.member.entity.Member;
 import com.ll.exam.final__2022_10_08.app.member.service.MemberService;
 import com.ll.exam.final__2022_10_08.app.product.entity.Product;
 import com.ll.exam.final__2022_10_08.app.product.service.ProductService;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,14 @@ public class CartServiceTests {
         assertThat(cartItem.getId()).isEqualTo(3L);
         assertThat(cartItem.getMember()).isEqualTo(member);
         assertThat(cartItem.getProduct()).isEqualTo(product);
+    }
+
+    @Test
+    @DisplayName("상품 목록 확인")
+    void t2() {
+        List<CartItem> cartItemList = cartService.findAllByMemberId(2L);
+
+        assertThat(cartItemList.size()).isEqualTo(1);
+        assertThat(cartItemList.get(0).getIndex_unique()).isEqualTo(23);
     }
 }
