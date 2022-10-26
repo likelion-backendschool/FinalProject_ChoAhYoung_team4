@@ -73,7 +73,8 @@ public class NotProdInitData {
             Product product4 = productService.create(member2, "상품명4", 60_000, "HTML", "#IT #HTML");
 
             CartItem cartItem1 = cartService.addCart(member2, product3);
-            CartItem cartItem2 = cartService.addCart(member1, product2);
+            CartItem cartItem2 = cartService.addCart(member2, product2);
+            CartItem cartItem3 = cartService.addCart(member1, product2);
         };
     }
 }
