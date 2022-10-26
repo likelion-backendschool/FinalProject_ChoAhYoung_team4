@@ -50,4 +50,11 @@ public class CartController {
         model.addAttribute("cartItemList", cartItemList);
         return "cart/list";
     }
+
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping("/delete/{uniqueId}")
+    public String deleteCartItem(@PathVariable Long uniqueId) {
+        cartService.deleteCartItem(uniqueId);
+        return "redirect:/cart/list";
+    }
 }

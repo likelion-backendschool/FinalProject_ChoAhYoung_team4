@@ -31,11 +31,12 @@ public class CartServiceTests {
     @Test
     @DisplayName("상품 추가")
     void t1 () {
+        // Given
         Member member = memberService.findByUsername("user1").get();
         Product product = productService.findById(3L).get();
-
+        // When
         CartItem cartItem = cartService.addCart(member, product);
-
+        // Then
         assertThat(cartItem.getId()).isEqualTo(3L);
         assertThat(cartItem.getMember()).isEqualTo(member);
         assertThat(cartItem.getProduct()).isEqualTo(product);
@@ -44,9 +45,21 @@ public class CartServiceTests {
     @Test
     @DisplayName("상품 목록 확인")
     void t2() {
+        // When
         List<CartItem> cartItemList = cartService.findAllByMemberId(2L);
-
+        // Then
         assertThat(cartItemList.size()).isEqualTo(1);
-        assertThat(cartItemList.get(0).getIndex_unique()).isEqualTo(23);
+        assertThat(cartItemList.get(0).getIndexUnique()).isEqualTo(23);
+    }
+
+
+    @Test
+    @DisplayName("상품 삭제 확인")
+    void t3() {
+        // When
+        cartService.deleteCartItem(23L);
+        List<CartItem> cartItemList = cartService.findAllByMemberId(2L);
+        // Then
+        assertThat(cartItemList.size()).isEqualTo(0);
     }
 }
