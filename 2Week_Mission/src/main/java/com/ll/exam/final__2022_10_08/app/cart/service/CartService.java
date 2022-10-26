@@ -1,5 +1,6 @@
 package com.ll.exam.final__2022_10_08.app.cart.service;
 
+import com.ll.exam.final__2022_10_08.app.base.exception.NotFoundException;
 import com.ll.exam.final__2022_10_08.app.cart.entity.CartItem;
 import com.ll.exam.final__2022_10_08.app.cart.repository.CartRepository;
 import com.ll.exam.final__2022_10_08.app.member.entity.Member;
@@ -20,5 +21,14 @@ public class CartService {
 
     public List<CartItem> findAllByMemberId(long id) {
         return cartRepository.findAllByMemberId(id);
+    }
+
+    public void deleteCartItem(Long uniqueId) {
+        CartItem cartItem = cartRepository.findByIndexUnique(uniqueId).orElse(null);
+
+        if (cartItem == null) {
+            throw new NotFoundException();
+        }
+        cartRepository.delete(cartItem);
     }
 }

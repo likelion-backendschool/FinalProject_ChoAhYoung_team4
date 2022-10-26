@@ -23,11 +23,11 @@ public class CartItem extends BaseEntity {
     @ManyToOne
     private Product product;
 
-    private Long index_unique;
+    private Long indexUnique;
 
     public CartItem (Member member, Product product) {
         this.member = member;
         this.product = product;
-        this.index_unique = Long.parseLong("%d%d".formatted(member.getId(), product.getId()));
+        this.indexUnique = Long.parseLong("%d%d".formatted(member.getId(), product.getId()));
     }
 }
