@@ -37,7 +37,7 @@ public class CartServiceTests {
         // When
         CartItem cartItem = cartService.addCart(member, product);
         // Then
-        assertThat(cartItem.getId()).isEqualTo(3L);
+        assertThat(cartItem.getId()).isEqualTo(4L);
         assertThat(cartItem.getMember()).isEqualTo(member);
         assertThat(cartItem.getProduct()).isEqualTo(product);
     }
@@ -48,7 +48,7 @@ public class CartServiceTests {
         // When
         List<CartItem> cartItemList = cartService.findAllByMemberId(2L);
         // Then
-        assertThat(cartItemList.size()).isEqualTo(1);
+        assertThat(cartItemList.size()).isEqualTo(2);
         assertThat(cartItemList.get(0).getIndexUnique()).isEqualTo(23);
     }
 
@@ -60,6 +60,6 @@ public class CartServiceTests {
         cartService.deleteCartItem(23L);
         List<CartItem> cartItemList = cartService.findAllByMemberId(2L);
         // Then
-        assertThat(cartItemList.size()).isEqualTo(0);
+        assertThat(cartItemList.size()).isEqualTo(1);
     }
 }
