@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/html">
+
+<body>
+<th:block th:fragment="cartListItem">
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+
+      <h2 class="card-title flex flex-wrap">
+        <a th:href="@{|/product/${cartItem.product.id}|}" class="mr-auto">
+          <i class="fa-solid fa-newspaper"></i>
+          <span th:text="${cartItem.product.subject}"></span>
+        </a>
+        <div class="flex">
+          <div th:text="${cartItem.product.price}"></div>
+        </div>
+      </h2>
+
+      <div class="flex justify-end">
+        <div class="badge badge-outline">
+          <i class="fa-solid fa-pen"></i>
+          <span class="ml-2"
+                th:text="${#temporals.format(cartItem.createDate, 'yy-MM-dd HH:mm')}"></span>
+        </div>
+      </div>
+
+      <div class="card-actions justify-end">
+        <a th:href="@{|/product/${cartItem.product.id}|}" class="btn btn-sm">
+          <i class="fa-solid fa-eye"></i>
+          <span class="ml-2">보기</span>
+        </a>
+        <a th:href="@{|/cart/delete/${cartItem.indexUnique}|}" class="btn btn-sm">
+          <i class="fa-sharp fa-solid fa-trash"></i>
+          <span class="ml-2">삭제</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</th:block>
+</body>
+
+</html>
